@@ -19,6 +19,6 @@ public class GlobalExceptionHandler {
                 .stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .toList();
-        return new ResponseEntity<>(new BaseResponse<>(false, "Required Argument missing", errors), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new BaseResponse<>(false, "Required Argument Missing", errors), HttpStatus.BAD_REQUEST);
     }
 }

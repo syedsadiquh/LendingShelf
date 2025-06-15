@@ -33,13 +33,13 @@ public class UserService {
                     .build();
             userRepository.save(data);
             log.info("User created");
-            return new BaseResponse<>(true, "User Created successfully", userDto);
+            return new BaseResponse<>(true, "User Created Successfully", userDto);
         } catch (DataIntegrityViolationException ex) {
             log.error("Exception: User creation failed: user already exists.");
             return new BaseResponse<>(false, "User Already Exists", userDto);
         } catch (Exception ex) {
             log.error("User creation failed unexpectedly. Exception: {}", ex.getMessage());
-            return new BaseResponse<>(false, "Unexpected Error. Please Try again", userDto);
+            return new BaseResponse<>(false, "Unexpected Error. Please Try Again", userDto);
         }
     }
 }
