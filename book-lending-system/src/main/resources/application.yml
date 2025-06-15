@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: "Lending Shelf"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lending_shelf
+    # Temp user and password
+    username: postgres
+    password: root1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
