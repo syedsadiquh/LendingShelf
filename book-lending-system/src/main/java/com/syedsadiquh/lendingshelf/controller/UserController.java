@@ -48,8 +48,11 @@ public class UserController {
         var res = userService.getUserById(id);
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
-        else
+        else {
+            if (res.getMessage().equals("No user found"))
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping({"/v1/getUserByUsername", "/v1/getUserByUsername/"})
@@ -57,8 +60,11 @@ public class UserController {
         var res = userService.getUserByUsername(username);
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
-        else
+        else {
+            if (res.getMessage().equals("No user found"))
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping({"/v1/updateUser", "/v1/updateUser/"})
@@ -66,8 +72,11 @@ public class UserController {
         var res = userService.updateUser(updateUserDto);
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
-        else
+        else {
+            if (res.getMessage().equals("No user found"))
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping({"/v1/updateUsername", "/v1/updateUsername/"})
@@ -75,7 +84,22 @@ public class UserController {
         var res = userService.updateUsername(updateUsernameDto.getOldUsername(), updateUsernameDto.getNewUsername());
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
-        else
+        else{
+            if (res.getMessage().contains("No user found"))
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping({"/v1/deleteUser", "/v1/deleteUser/"})
+    public ResponseEntity<BaseResponse<String>> deleteUser(@RequestParam String username) {
+        var res = userService.deleteUser(username);
+        if (res.isSuccess())
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        else {
+            if (res.getMessage().contains("User not found"))
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

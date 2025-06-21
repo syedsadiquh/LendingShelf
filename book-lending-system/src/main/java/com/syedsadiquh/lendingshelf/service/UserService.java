@@ -141,8 +141,33 @@ public class UserService {
                 return new BaseResponse<>(false, "Internal Server Error", oldUser);
             }
         } catch (Exception ex) {
-            log.error("Unable to update Username by Username. Exception: {}", ex.getMessage());
+            log.error("Unable to update Username. Exception: {}", ex.getMessage());
             return new BaseResponse<>(false, "Unable to get User with username: " + oldUsername, null);
+        }
+    }
+
+    public BaseResponse<String> deleteUser(String username) {
+        try {
+            var user = userRepository.findUsersByUsername(username);
+            if (user == null) {
+                log.warn("No user found with Username : {}", username);
+                return new BaseResponse<>(false, "User not found with username : " + username, null);
+            }
+            if (!user.getBorrowings().isEmpty()) {
+                log.warn("Borrowings found for Username : {}", username);
+                return new BaseResponse<>(false, "Borrowings found for username : " + username, null);
+            }
+            var res =  userRepository.deleteUserByUsername(username);
+            if (res == 1) {
+                return new BaseResponse<>(true, "User Deleted Successfully", null);
+            }
+            else {
+                log.error("Unable to delete User");
+                return new BaseResponse<>(false, "Internal Server Error. Try again later", null);
+            }
+        } catch (Exception ex) {
+            log.error("Unable to delete User. Exception: {}", ex.getMessage());
+            return new BaseResponse<>(false, "Internal Server Error. Try again later", null);
         }
     }
 }
