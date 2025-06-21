@@ -1,9 +1,11 @@
 package com.syedsadiquh.lendingshelf.service;
 
 import com.syedsadiquh.lendingshelf.controller.BaseResponse;
+import com.syedsadiquh.lendingshelf.dto.UpdateUserDto;
 import com.syedsadiquh.lendingshelf.dto.UserDto;
 import com.syedsadiquh.lendingshelf.models.User;
 import com.syedsadiquh.lendingshelf.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -65,16 +68,60 @@ public class UserService {
     public BaseResponse<User> getUserById(UUID id) {
         User user;
         try {
-            user = userRepository.findById(id).orElse(null);
+            user = userRepository.findUsersById(id);
             if (user == null) {
                 log.info("No user found");
-                return new BaseResponse<>(true, "No user found with Id : "+id, null);
+                return new BaseResponse<>(false, "No user found with Id : " + id, null);
             }
             log.info("User Found with Id : {}", id);
             return new BaseResponse<>(true, "User found", user);
-        }  catch (Exception ex) {
-            log.error("Unable to get User. Exception: {}", ex.getMessage());
+        } catch (Exception ex) {
+            log.error("Unable to get User by Id. Exception: {}", ex.getMessage());
             return new BaseResponse<>(false, "Unable to get User by Id", null);
+        }
+    }
+
+    public BaseResponse<User> getUserByUsername(String username) {
+        User user;
+        try {
+            user = userRepository.findUsersByUsername(username);
+            if (user == null) {
+                log.info("No user found");
+                return new BaseResponse<>(false, "No user found with username : " + username, null);
+            }
+            log.info("User Found with Username : {}", username);
+            return new BaseResponse<>(true, "User found", user);
+        } catch (Exception ex) {
+            log.error("Unable to get User by Username. Exception: {}", ex.getMessage());
+            return new BaseResponse<>(false, "Unable to get User by username", null);
+        }
+    }
+
+    public BaseResponse<User> updateUser(UpdateUserDto updateUserDto) {
+        User oldUser;
+        try {
+            oldUser = userRepository.findUsersByUsername(updateUserDto.getUsername());
+            if (oldUser == null) {
+                log.info("No user found with Username : {}", updateUserDto.getUsername());
+                return new BaseResponse<>(false, "No User Found with username: " + updateUserDto.getUsername(), null);
+            }
+
+            var newName = Objects.equals(updateUserDto.getName(), "") ? oldUser.getName() : updateUserDto.getName();
+            var newEmail = Objects.equals(updateUserDto.getEmail(), "") ? oldUser.getEmail() : updateUserDto.getEmail();
+
+            var res = userRepository.updateUser(updateUserDto.getUsername(), LocalDateTime.now(), updateUserDto.getUsername(), newName, newEmail);
+
+            if (res == 1) {
+                var data = userRepository.findUsersByUsername(updateUserDto.getUsername());
+                log.info("User Updated Successfully");
+                return new BaseResponse<>(true, "User Updated Successfully", data);
+            } else {
+                log.error("Unable to Update User");
+                return new BaseResponse<>(false, "Internal Server Error", oldUser);
+            }
+        } catch (Exception ex) {
+            log.error("User Not Found. Exception: {}", ex.getMessage());
+            return new BaseResponse<>(false, "Unable to get User with username: " + updateUserDto.getUsername(), null);
         }
     }
 }

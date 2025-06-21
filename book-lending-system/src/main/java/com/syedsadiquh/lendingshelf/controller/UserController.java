@@ -1,5 +1,6 @@
 package com.syedsadiquh.lendingshelf.controller;
 
+import com.syedsadiquh.lendingshelf.dto.UpdateUserDto;
 import com.syedsadiquh.lendingshelf.dto.UserDto;
 import com.syedsadiquh.lendingshelf.models.User;
 import com.syedsadiquh.lendingshelf.service.UserService;
@@ -29,7 +30,7 @@ public class UserController {
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.CREATED);
         else
-            return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping({"/v1/getAllUsers", "/v1/getAllUsers/"})
@@ -44,6 +45,24 @@ public class UserController {
     @GetMapping({"/v1/getUserById", "/v1/getUserById/"})
     public ResponseEntity<BaseResponse<User>> getUserById(@RequestParam UUID id) {
         var res = userService.getUserById(id);
+        if (res.isSuccess())
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping({"/v1/getUserByUsername", "/v1/getUserByUsername/"})
+    public ResponseEntity<BaseResponse<User>> getUserByUsername(@RequestParam String username) {
+        var res = userService.getUserByUsername(username);
+        if (res.isSuccess())
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PostMapping({"/v1/updateUser", "/v1/updateUser/"})
+    public ResponseEntity<BaseResponse<User>> updateUser(@RequestBody @Valid UpdateUserDto updateUserDto) {
+        var res = userService.updateUser(updateUserDto);
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
         else
