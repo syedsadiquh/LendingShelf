@@ -1,11 +1,10 @@
 package com.syedsadiquh.lendingshelf.service;
 
 import com.syedsadiquh.lendingshelf.controller.BaseResponse;
-import com.syedsadiquh.lendingshelf.dto.UpdateUserDto;
-import com.syedsadiquh.lendingshelf.dto.UserDto;
+import com.syedsadiquh.lendingshelf.dto.UserDto.UserDto;
 import com.syedsadiquh.lendingshelf.models.User;
 import com.syedsadiquh.lendingshelf.repositories.UserRepository;
-import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,12 +96,12 @@ public class UserService {
         }
     }
 
-    public BaseResponse<User> updateUser(UpdateUserDto updateUserDto) {
+    public BaseResponse<User> updateUser(com.syedsadiquh.lendingshelf.dto.UserDto.@Valid UpdateUserDto updateUserDto) {
         User oldUser;
         try {
             oldUser = userRepository.findUsersByUsername(updateUserDto.getUsername());
             if (oldUser == null) {
-                log.info("No user found with Username : {}", updateUserDto.getUsername());
+                log.warn("No user found with Username : {}", updateUserDto.getUsername());
                 return new BaseResponse<>(false, "No User Found with username: " + updateUserDto.getUsername(), null);
             }
 
@@ -122,6 +121,28 @@ public class UserService {
         } catch (Exception ex) {
             log.error("User Not Found. Exception: {}", ex.getMessage());
             return new BaseResponse<>(false, "Unable to get User with username: " + updateUserDto.getUsername(), null);
+        }
+    }
+
+    public BaseResponse<User> updateUsername(String oldUsername, String newUsername) {
+        try {
+            var oldUser = userRepository.findUsersByUsername(oldUsername);
+            if (oldUser == null) {
+                log.warn("No user found with Username : {}", oldUsername);
+                return new BaseResponse<>(false, "No user found with Username : " + oldUsername, oldUser);
+            }
+            var res = userRepository.updateUsername(oldUser.getId(), newUsername);
+            if (res == 1) {
+                var data = userRepository.findUsersByUsername(newUsername);
+                log.info("User Updated Successfully");
+                return new BaseResponse<>(true, "User Updated Successfully", data);
+            } else {
+                log.error("Unable to Update User");
+                return new BaseResponse<>(false, "Internal Server Error", oldUser);
+            }
+        } catch (Exception ex) {
+            log.error("Unable to update Username by Username. Exception: {}", ex.getMessage());
+            return new BaseResponse<>(false, "Unable to get User with username: " + oldUsername, null);
         }
     }
 }

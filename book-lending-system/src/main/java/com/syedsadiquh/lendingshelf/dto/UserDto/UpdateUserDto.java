@@ -1,16 +1,14 @@
-package com.syedsadiquh.lendingshelf.dto;
+package com.syedsadiquh.lendingshelf.dto.UserDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class UserDto {
+public class UpdateUserDto {
     @NotBlank
     String username;
 
-    @NotBlank
     String name;
 
     String email;
-
 }
