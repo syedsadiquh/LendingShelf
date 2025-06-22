@@ -42,5 +42,18 @@ public class BookService {
         }
     }
 
-    
+    public BaseResponse<Book> findBookByIsbn(String isbn) {
+        try {
+            var res = bookRepository.findBookByIsbn(isbn);
+            if (res == null) {
+                log.info("Book not found");
+                return new BaseResponse<>(false, "Book not found", null);
+            }
+            log.info("Book found");
+            return new BaseResponse<>(true, "Book found", res);
+        } catch (Exception e) {
+            log.error("Unable to find book. Exception: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to Find Book", null);
+        }
+    }
 }
