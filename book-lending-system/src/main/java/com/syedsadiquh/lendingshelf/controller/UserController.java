@@ -25,7 +25,7 @@ public class UserController {
     }
 
 
-    @PostMapping({"/v1/createUser", "/v1/createUser/"})
+    @PostMapping({"/v1/user/createUser", "/v1/user/createUser/"})
     public ResponseEntity<BaseResponse<UserDto>> createUser(@RequestBody @Valid UserDto userDto) {
         var res = userService.createUser(userDto);
         if (res.isSuccess())
@@ -34,7 +34,7 @@ public class UserController {
             return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
     }
 
-    @GetMapping({"/v1/getAllUsers", "/v1/getAllUsers/"})
+    @GetMapping({"/v1/user/getAllUsers", "/v1/user/getAllUsers/"})
     public ResponseEntity<BaseResponse<List<User>>> getAllUsers() {
         var res = userService.getAllUsers();
         if (res.isSuccess())
@@ -43,7 +43,7 @@ public class UserController {
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping({"/v1/getUserById", "/v1/getUserById/"})
+    @GetMapping({"/v1/user/getUserById", "/v1/user/getUserById/"})
     public ResponseEntity<BaseResponse<User>> getUserById(@RequestParam UUID id) {
         var res = userService.getUserById(id);
         if (res.isSuccess())
@@ -55,7 +55,7 @@ public class UserController {
         }
     }
 
-    @GetMapping({"/v1/getUserByUsername", "/v1/getUserByUsername/"})
+    @GetMapping({"/v1/user/getUserByUsername", "/v1/user/getUserByUsername/"})
     public ResponseEntity<BaseResponse<User>> getUserByUsername(@RequestParam String username) {
         var res = userService.getUserByUsername(username);
         if (res.isSuccess())
@@ -67,7 +67,7 @@ public class UserController {
         }
     }
 
-    @PostMapping({"/v1/updateUser", "/v1/updateUser/"})
+    @PostMapping({"/v1/user/updateUser", "/v1/user/updateUser/"})
     public ResponseEntity<BaseResponse<User>> updateUser(@RequestBody @Valid UpdateUserDto updateUserDto) {
         var res = userService.updateUser(updateUserDto);
         if (res.isSuccess())
@@ -79,7 +79,7 @@ public class UserController {
         }
     }
 
-    @PostMapping({"/v1/updateUsername", "/v1/updateUsername/"})
+    @PostMapping({"/v1/user/updateUsername", "/v1/user/updateUsername/"})
     public ResponseEntity<BaseResponse<User>> updateUsername(@RequestBody @Valid UpdateUserUsernameDto updateUsernameDto) {
         var res = userService.updateUsername(updateUsernameDto.getOldUsername(), updateUsernameDto.getNewUsername());
         if (res.isSuccess())
@@ -91,7 +91,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping({"/v1/deleteUser", "/v1/deleteUser/"})
+    @DeleteMapping({"/v1/user/deleteUser", "/v1/user/deleteUser/"})
     public ResponseEntity<BaseResponse<String>> deleteUser(@RequestParam String username) {
         var res = userService.deleteUser(username);
         if (res.isSuccess())
