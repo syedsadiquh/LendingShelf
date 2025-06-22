@@ -31,7 +31,7 @@ public class UserController {
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.CREATED);
         else
-            return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(res, HttpStatus.CONFLICT);
     }
 
     @GetMapping({"/v1/user/getAllUsers", "/v1/user/getAllUsers/"})
