@@ -43,7 +43,7 @@ public class UserController {
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping({"/v1/user/getUserById", "/v1/user/getUserById/"})
+    @GetMapping({"/v1/user/findUserById", "/v1/user/findUserById/"})
     public ResponseEntity<BaseResponse<User>> getUserById(@RequestParam UUID id) {
         var res = userService.getUserById(id);
         if (res.isSuccess())
@@ -55,7 +55,7 @@ public class UserController {
         }
     }
 
-    @GetMapping({"/v1/user/getUserByUsername", "/v1/user/getUserByUsername/"})
+    @GetMapping({"/v1/user/findUserByUsername", "/v1/user/findUserByUsername/"})
     public ResponseEntity<BaseResponse<User>> getUserByUsername(@RequestParam String username) {
         var res = userService.getUserByUsername(username);
         if (res.isSuccess())
