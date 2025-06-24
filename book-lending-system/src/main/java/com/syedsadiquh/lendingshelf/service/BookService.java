@@ -6,11 +6,14 @@ import com.syedsadiquh.lendingshelf.models.Book;
 import com.syedsadiquh.lendingshelf.repositories.BookRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Component
+@Service
 public class BookService {
     private static final Logger log = LogManager.getLogger(BookService.class);
     private final BookRepository bookRepository;
@@ -56,4 +59,21 @@ public class BookService {
             return new BaseResponse<>(false, "Unable to Find Book", null);
         }
     }
+
+    public BaseResponse<Page<Book>> findAllBooks(Pageable pageable) {
+        try {
+            var res = bookRepository.findAll(pageable);
+            if (res.isEmpty()) {
+                log.info("No Books Exists");
+                return new BaseResponse<>(false, "No Books Exists in the page", res);
+            }
+            log.info("Books found");
+            return new BaseResponse<>(true, "Books found", res);
+        } catch (Exception e) {
+            log.error("Unable to get all book. Exception: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to Find Book", null);
+        }
+    }
+
+
 }
