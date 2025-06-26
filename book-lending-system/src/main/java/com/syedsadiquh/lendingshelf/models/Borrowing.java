@@ -33,4 +33,7 @@ public class Borrowing extends BaseEntity {
 
     private LocalDateTime actualReturnDate;
 
+    @Column(nullable = false)
+    private boolean returned = false;
+
 }

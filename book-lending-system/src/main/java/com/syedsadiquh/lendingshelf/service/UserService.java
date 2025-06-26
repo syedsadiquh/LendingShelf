@@ -2,6 +2,7 @@ package com.syedsadiquh.lendingshelf.service;
 
 import com.syedsadiquh.lendingshelf.controller.BaseResponse;
 import com.syedsadiquh.lendingshelf.dto.UserDto.UserDto;
+import com.syedsadiquh.lendingshelf.models.Borrowing;
 import com.syedsadiquh.lendingshelf.models.User;
 import com.syedsadiquh.lendingshelf.repositories.UserRepository;
 import jakarta.validation.Valid;
@@ -153,7 +154,15 @@ public class UserService {
                 log.warn("No user found with Username : {}", username);
                 return new BaseResponse<>(false, "User not found with username : " + username, null);
             }
-            if (!user.getBorrowings().isEmpty()) {
+            var borrows = user.getBorrowings();
+            boolean isBorrowed = false;
+            for (Borrowing x : borrows) {
+                if (!x.isReturned()) {
+                    isBorrowed = true;
+                    break;
+                }
+            }
+            if (isBorrowed) {
                 log.warn("Borrowings found for Username : {}", username);
                 return new BaseResponse<>(false, "Borrowings found for username : " + username, null);
             }

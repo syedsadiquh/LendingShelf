@@ -5,6 +5,7 @@ import com.syedsadiquh.lendingshelf.dto.BookDto.BookDto;
 import com.syedsadiquh.lendingshelf.dto.BookDto.SearchBookDto;
 import com.syedsadiquh.lendingshelf.dto.BookDto.UpdateBookDto;
 import com.syedsadiquh.lendingshelf.models.Book;
+import com.syedsadiquh.lendingshelf.models.Borrowing;
 import com.syedsadiquh.lendingshelf.repositories.BookRepository;
 import com.syedsadiquh.lendingshelf.specifications.BookSpecification;
 import org.apache.logging.log4j.LogManager;
@@ -120,6 +121,34 @@ public class BookService {
         } catch (Exception e) {
             log.error("Unable to search book. Exception: {}", e.getMessage());
             return new BaseResponse<>(false, "Unable to Search Book", null);
+        }
+    }
+
+    public BaseResponse<String> deleteBook(UUID id) {
+        try {
+            var book = bookRepository.getBookById(id);
+            if (book == null) {
+                log.info("Book not found");
+                return new BaseResponse<>(false, "Book not found", null);
+            }
+            var borrows = book.getBorrowings();
+            var isBorrowed = false;
+            for (Borrowing x : borrows) {
+                if (!x.isReturned()) {
+                    isBorrowed = true;
+                    break;
+                }
+            }
+            if (isBorrowed) {
+                log.info("Borrowings found");
+                return new BaseResponse<>(false, "Borrowings found", null);
+            }
+            bookRepository.deleteById(id);
+            log.info("Book deleted");
+            return new BaseResponse<>(true, "Book deleted", null);
+        } catch (Exception e) {
+            log.error("Unable to delete book. Exception: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to delete Book", null);
         }
     }
 

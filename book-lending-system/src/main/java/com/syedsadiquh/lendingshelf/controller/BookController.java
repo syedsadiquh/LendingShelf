@@ -101,4 +101,17 @@ public class BookController {
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping({"/v1/book/deleteBook", "/v1/book/deleteBook/"})
+    public ResponseEntity<BaseResponse<String>> deleteBook(@RequestParam UUID id) {
+        var res = bookService.deleteBook(id);
+        if (res.isSuccess()) {
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } else {
+            if (res.getMessage().contains("Book not found")) {
+                return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

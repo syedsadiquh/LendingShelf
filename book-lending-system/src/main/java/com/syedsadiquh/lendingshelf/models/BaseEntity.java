@@ -22,7 +22,7 @@ public class BaseEntity {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime lastUpdatedAt;
