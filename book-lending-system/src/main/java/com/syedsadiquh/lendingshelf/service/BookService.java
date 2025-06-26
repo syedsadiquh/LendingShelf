@@ -2,8 +2,11 @@ package com.syedsadiquh.lendingshelf.service;
 
 import com.syedsadiquh.lendingshelf.controller.BaseResponse;
 import com.syedsadiquh.lendingshelf.dto.BookDto.BookDto;
+import com.syedsadiquh.lendingshelf.dto.BookDto.SearchBookDto;
+import com.syedsadiquh.lendingshelf.dto.BookDto.UpdateBookDto;
 import com.syedsadiquh.lendingshelf.models.Book;
 import com.syedsadiquh.lendingshelf.repositories.BookRepository;
+import com.syedsadiquh.lendingshelf.specifications.BookSpecification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Page;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookService {
@@ -47,7 +51,7 @@ public class BookService {
 
     public BaseResponse<Book> findBookByIsbn(String isbn) {
         try {
-            var res = bookRepository.findBookByIsbn(isbn);
+            var res = bookRepository.getBookByIsbn(isbn);
             if (res == null) {
                 log.info("Book not found");
                 return new BaseResponse<>(false, "Book not found", null);
@@ -75,5 +79,48 @@ public class BookService {
         }
     }
 
+    public BaseResponse<Book> updateBook(UUID id, UpdateBookDto updateBookDto) {
+        try {
+            var oldBook = bookRepository.getBookById(id);
+            if (oldBook == null) {
+                log.info("Book not found");
+                return new BaseResponse<>(false, "Book not found", null);
+            }
+            var newTitle = (updateBookDto.getTitle() != null && !updateBookDto.getTitle().isBlank()) ? updateBookDto.getTitle() : oldBook.getTitle();
+            var newAuthor = (updateBookDto.getAuthor() != null && !updateBookDto.getAuthor().isBlank()) ? updateBookDto.getAuthor() : oldBook.getAuthor();
+            var newIsbn = (updateBookDto.getIsbn() != null && !updateBookDto.getIsbn().isBlank()) ? updateBookDto.getIsbn() : oldBook.getIsbn();
+            var newPubYear = updateBookDto.getPublicationYear() != null ? (updateBookDto.getPublicationYear() == oldBook.getPublicationYear() ? oldBook.getPublicationYear() : updateBookDto.getPublicationYear()) : oldBook.getPublicationYear();
+            var newQuantity = updateBookDto.getAvailableQuantity() != null ? (updateBookDto.getAvailableQuantity() == oldBook.getAvailableQuantity() ? oldBook.getAvailableQuantity() : updateBookDto.getAvailableQuantity()) : oldBook.getAvailableQuantity();
+
+            var res = bookRepository.updateBookByIsbn(oldBook.getId(), LocalDateTime.now(),newTitle, newAuthor, newIsbn , newPubYear, newQuantity);
+            if (res == 1) {
+                log.info("Book updated");
+                var data = bookRepository.getBookById(id);
+                return new BaseResponse<>(true, "Book updated", data);
+            } else {
+                log.error("Book not updated");
+                return new BaseResponse<>(false, "Book not updated", null);
+            }
+        } catch (Exception e) {
+            log.error("Unable to update book. Exception: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to Update Book", null);
+        }
+    }
+
+    public BaseResponse<Page<Book>> searchBook(SearchBookDto searchBookDto, Pageable pageable) {
+        try {
+            var spec = BookSpecification.matchFields(searchBookDto);
+            var res = bookRepository.findAll(spec, pageable);
+            if (res.isEmpty()) {
+                log.info("No Books found");
+                return new BaseResponse<>(false, "No Books found", null);
+            }
+            log.info("Books found");
+            return new BaseResponse<>(true, "Books found", res);
+        } catch (Exception e) {
+            log.error("Unable to search book. Exception: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to Search Book", null);
+        }
+    }
 
 }
