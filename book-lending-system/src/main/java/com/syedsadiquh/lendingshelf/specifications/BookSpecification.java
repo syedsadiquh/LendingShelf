@@ -1,9 +1,7 @@
 package com.syedsadiquh.lendingshelf.specifications;
 
 import com.syedsadiquh.lendingshelf.dto.BookDto.SearchBookDto;
-import com.syedsadiquh.lendingshelf.dto.BookDto.UpdateBookDto;
 import com.syedsadiquh.lendingshelf.models.Book;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

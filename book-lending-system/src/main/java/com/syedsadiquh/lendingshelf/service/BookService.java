@@ -15,7 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -93,7 +92,7 @@ public class BookService {
             var newPubYear = updateBookDto.getPublicationYear() != null ? (updateBookDto.getPublicationYear() == oldBook.getPublicationYear() ? oldBook.getPublicationYear() : updateBookDto.getPublicationYear()) : oldBook.getPublicationYear();
             var newQuantity = updateBookDto.getAvailableQuantity() != null ? (updateBookDto.getAvailableQuantity() == oldBook.getAvailableQuantity() ? oldBook.getAvailableQuantity() : updateBookDto.getAvailableQuantity()) : oldBook.getAvailableQuantity();
 
-            var res = bookRepository.updateBookByIsbn(oldBook.getId(), LocalDateTime.now(),newTitle, newAuthor, newIsbn , newPubYear, newQuantity);
+            var res = bookRepository.updateBookByIsbn(oldBook.getId(), LocalDateTime.now(), newTitle, newAuthor, newIsbn, newPubYear, newQuantity);
             if (res == 1) {
                 log.info("Book updated");
                 var data = bookRepository.getBookById(id);

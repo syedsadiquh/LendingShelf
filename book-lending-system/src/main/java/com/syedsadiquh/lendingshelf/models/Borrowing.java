@@ -1,5 +1,7 @@
 package com.syedsadiquh.lendingshelf.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -20,11 +22,13 @@ import java.time.LocalDateTime;
 @Entity
 public class Borrowing extends BaseEntity {
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_obj")
+    @JsonManagedReference
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_obj")
+    @JsonManagedReference
     private Book book;
 
     @Column(nullable = false)

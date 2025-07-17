@@ -166,11 +166,10 @@ public class UserService {
                 log.warn("Borrowings found for Username : {}", username);
                 return new BaseResponse<>(false, "Borrowings found for username : " + username, null);
             }
-            var res =  userRepository.deleteUserByUsername(username);
+            var res = userRepository.deleteUserByUsername(username);
             if (res == 1) {
                 return new BaseResponse<>(true, "User Deleted Successfully", null);
-            }
-            else {
+            } else {
                 log.error("Unable to delete User");
                 return new BaseResponse<>(false, "Internal Server Error. Try again later", null);
             }
