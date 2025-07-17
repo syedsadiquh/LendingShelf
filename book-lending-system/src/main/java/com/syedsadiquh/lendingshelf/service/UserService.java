@@ -157,7 +157,7 @@ public class UserService {
             var borrows = user.getBorrowings();
             boolean isBorrowed = false;
             for (Borrowing x : borrows) {
-                if (!x.isReturned()) {
+                if (x.getActualReturnDate() != null) {
                     isBorrowed = true;
                     break;
                 }

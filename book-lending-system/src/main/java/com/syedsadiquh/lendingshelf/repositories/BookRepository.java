@@ -21,4 +21,10 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
     @Transactional
     @Query("update Book b set b.lastUpdatedAt = :updatedAt, b.title = :title, b.author = :author, b.isbn = :isbn, b.publicationYear = :pubYear, b.availableQuantity = :quantity where b.id = :id")
     int updateBookByIsbn(UUID id, LocalDateTime updatedAt, String title, String author, String isbn, int pubYear, int quantity);
+
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query("update Book b set b.availableQuantity = :quantity where b.id = :id")
+    int updateBookQuantityById(UUID id, Integer quantity);
+
 }

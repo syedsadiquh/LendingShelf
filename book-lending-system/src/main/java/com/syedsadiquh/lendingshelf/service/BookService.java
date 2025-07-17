@@ -134,7 +134,7 @@ public class BookService {
             var borrows = book.getBorrowings();
             var isBorrowed = false;
             for (Borrowing x : borrows) {
-                if (!x.isReturned()) {
+                if (x.getActualReturnDate() != null) {
                     isBorrowed = true;
                     break;
                 }

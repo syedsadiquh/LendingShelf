@@ -28,6 +28,6 @@ public class Book extends BaseEntity {
 
     private int availableQuantity;
 
-    @OneToMany
+    @OneToMany(mappedBy = "book")
     private List<Borrowing> borrowings;
 }

@@ -27,6 +27,6 @@ public class User extends BaseEntity {
     @Column(unique = true)
     private String email;
 
-    @OneToMany
-    List<Borrowing> borrowings;
+    @OneToMany(mappedBy = "user")
+    private List<Borrowing> borrowings;
 }

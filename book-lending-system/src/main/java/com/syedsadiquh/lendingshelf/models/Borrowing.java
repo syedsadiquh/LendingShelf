@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
@@ -32,8 +31,5 @@ public class Borrowing extends BaseEntity {
     private LocalDateTime expectedReturnDate;
 
     private LocalDateTime actualReturnDate;
-
-    @Column(nullable = false)
-    private boolean returned = false;
 
 }
