@@ -14,8 +14,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BorrowingService {
@@ -107,4 +109,58 @@ public class BorrowingService {
         }
     }
 
+    @Transactional
+    @Modifying
+    public BaseResponse<Borrowing> returnBorrowing(UUID borrowing_id) {
+        try {
+            // Checking if borrowing Exists.
+            var borrowing = borrowingRepository.findById(borrowing_id);
+            if (borrowing.isEmpty()) {
+                log.error("Borrowing with id {} not found", borrowing_id);
+                return new BaseResponse<>(false, "Unable to Return. Borrowing not found", null);
+            }
+            if (borrowing.get().getActualReturnDate() != null) {
+                log.error("Borrowing with id {} already returned", borrowing_id);
+                return new BaseResponse<>(false, "Borrowing already returned", null);
+            }
+            // getting book_id and updating it.
+            var book = borrowing.get().getBook();
+            var updateBook = bookRepository.updateBookQuantityById(book.getId(), book.getAvailableQuantity() + 1);
+            if (updateBook == 0) {
+                log.error("Unable to update quantity of book with id {}", book.getId());
+                return new BaseResponse<>(false, "Unable to update quantity of book. Returning Failed", null);
+            }
+            // updating the borrowing for actual Return Date
+            var res = borrowingRepository.updateReturnStatus(borrowing_id);
+            if (res == 0) {
+                log.error("Unable to update Borrowing");
+                return new BaseResponse<>(false, "Unable to update Borrowing", null);
+            }
+            log.info("Borrowing updated successfully");
+            return new BaseResponse<>(true, "Borrowing updated successfully", borrowingRepository.findById(borrowing_id).orElse(null));
+
+        } catch (Exception e) {
+            log.error("Unable to return borrowing with id {}", borrowing_id);
+            return new BaseResponse<>(false, "Unable to return Borrowing. Try again.", null);
+        }
+    }
+
+    public BaseResponse<List<Borrowing>> getAllActiveBorrowings(UUID user_id) {
+        try {
+            var _user = userRepository.findById(user_id).orElse(null);
+            if (_user == null) {
+                log.error("User with id {} not found", user_id);
+                return new BaseResponse<>(false, "User with id " + user_id + " not found", null);
+            }
+            var allActiveBorrows = _user.getBorrowings().stream().filter(borrowing -> borrowing.getActualReturnDate() == null).toList();
+            if (allActiveBorrows.isEmpty()) {
+                log.info("User with id {} has no active borrowings", user_id);
+                return new BaseResponse<>(true,  "User has no active borrowings", new ArrayList<Borrowing>());
+            }
+            return new BaseResponse<>(true, "Active borrowings for user with id " + user_id + " fetched", allActiveBorrows);
+        } catch (Exception e) {
+            log.error("Unable to fetch borrowings from database. Error: {}", e.getMessage());
+            return new BaseResponse<>(false, "Unable to fetch active borrowings. Try again.", null);
+        }
+    }
 }
