@@ -45,7 +45,6 @@ COPY --from=builder ${JAR_FILE} application.jar
 EXPOSE 8080
 
 # The command to run the application when the container starts.
-# 'exec' is used to ensure the Java process becomes the container's main process (PID 1),
-# which allows it to receive signals like SIGTERM for graceful shutdowns.
-ENTRYPOINT ["exec", "java", "-jar", "application.jar"]
+# The Java process will correctly run as the main process (PID 1).
+ENTRYPOINT ["java", "-jar", "application.jar"]
 
