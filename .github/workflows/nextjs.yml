@@ -83,7 +83,7 @@ jobs:
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build && ${{ steps.detect-package-manager.outputs.runner }} next export
         working-directory: book-lending-frontend
 
       - name: Upload artifact
