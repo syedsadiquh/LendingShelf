@@ -1,0 +1,2551 @@
+{
+	"info": {
+		"_postman_id": "7bf7f089-0dc5-4322-88d1-161814be4681",
+		"name": "Book Lending System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41078799"
+	},
+	"item": [
+		{
+			"name": "User Endpoints",
+			"item": [
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"syedsadiquh\",\n    \"name\": \"Syed Sadiqu\",\n    \"email\": \"syed@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/user/createUser",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"createUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createUser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"syedsadiquh\",\n    \"name\": \"Syed Sadiqu\",\n    \"email\": \"syed@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/createUser",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"createUser"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:24:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Created Successfully\",\n    \"data\": {\n        \"username\": \"syedsadiquh\",\n        \"name\": \"Syed Sadiqu\",\n        \"email\": \"syed@gmail.com\"\n    }\n}"
+						},
+						{
+							"name": "createUserConflict",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"syedsadiquh\",\n    \"name\": \"Syed Sadiqu\",\n    \"email\": \"syed@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/createUser",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"createUser"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:27:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User Already Exists\",\n    \"data\": {\n        \"username\": \"syedsadiquh\",\n        \"name\": \"Syed Sadiqu\",\n        \"email\": \"syed@gmail.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/v1/user/getAllUsers",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"getAllUsers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllUsers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/getAllUsers",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"getAllUsers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:25:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"All Users Found\",\n    \"data\": [\n        {\n            \"id\": \"2eb0ffe1-4734-4129-861b-58f8aef68701\",\n            \"createdAt\": \"2025-08-10T05:54:41.156352\",\n            \"lastUpdatedAt\": null,\n            \"username\": \"syedsadiquh\",\n            \"name\": \"Syed Sadiqu\",\n            \"email\": \"syed@gmail.com\"\n        },\n        {\n            \"id\": \"a48bc540-335e-423b-b95b-72c356240ae3\",\n            \"createdAt\": \"2025-08-10T05:55:12.454056\",\n            \"lastUpdatedAt\": null,\n            \"username\": \"syedtest\",\n            \"name\": \"Syed Sadiqu\",\n            \"email\": \"syed@test.com\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "findUserById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/v1/user/findUserById?id=2eb0ffe1-4734-4129-861b-58f8aef68701",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"findUserById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2eb0ffe1-4734-4129-861b-58f8aef68701"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "findUserByIdSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/findUserById?id=2eb0ffe1-4734-4129-861b-58f8aef68701",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"findUserById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2eb0ffe1-4734-4129-861b-58f8aef68701"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:26:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User found\",\n    \"data\": {\n        \"id\": \"2eb0ffe1-4734-4129-861b-58f8aef68701\",\n        \"createdAt\": \"2025-08-10T05:54:41.156352\",\n        \"lastUpdatedAt\": null,\n        \"username\": \"syedsadiquh\",\n        \"name\": \"Syed Sadiqu\",\n        \"email\": \"syed@gmail.com\"\n    }\n}"
+						},
+						{
+							"name": "findUserByIdError",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/findUserById?id=2eb0ffe1-4734-4129-861b-58f8aef68700",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"findUserById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2eb0ffe1-4734-4129-861b-58f8aef68700"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:26:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"No user found with Id : 2eb0ffe1-4734-4129-861b-58f8aef68700\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "findUserByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/v1/user/findUserByUsername?username=syedsadiquh",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"findUserByUsername"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "syedsadiquh"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "findUserByUsernameSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/findUserByUsername?username=syedsadiquh",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"findUserByUsername"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "syedsadiquh"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:27:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User found\",\n    \"data\": {\n        \"id\": \"2eb0ffe1-4734-4129-861b-58f8aef68701\",\n        \"createdAt\": \"2025-08-10T05:54:41.156352\",\n        \"lastUpdatedAt\": null,\n        \"username\": \"syedsadiquh\",\n        \"name\": \"Syed Sadiqu\",\n        \"email\": \"syed@gmail.com\"\n    }\n}"
+						},
+						{
+							"name": "findUserByUsernameError",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/findUserByUsername?username=syedsadiqu",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"findUserByUsername"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "syedsadiqu"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:28:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"No user found with username : syedsadiqu\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"syedtest\",\n    \"name\": \"syed SDE\",\n    \"email\": \"syed@hehe.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/user/updateUser",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateUserEmailConflict",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"syedtest\",\n    \"name\": \"syed SDE\",\n    \"email\": \"syed@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/updateUser",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"updateUser"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:40:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Email Already Exists\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "updateUserSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"syedtest\",\n    \"name\": \"syed SDE\",\n    \"email\": \"syed@hehe.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/updateUser",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"updateUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:41:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Updated Successfully\",\n    \"data\": {\n        \"id\": \"a48bc540-335e-423b-b95b-72c356240ae3\",\n        \"createdAt\": \"2025-08-10T05:55:12.454056\",\n        \"lastUpdatedAt\": \"2025-08-10T06:11:37.514875\",\n        \"username\": \"syedtest\",\n        \"name\": \"syed SDE\",\n        \"email\": \"syed@hehe.com\"\n    }\n}"
+						},
+						{
+							"name": "updateUserUsernameNotFound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"syedtesst\",\n    \"name\": \"syed SDE\",\n    \"email\": \"syed@hehe.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/updateUser",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"updateUser"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:43:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"No User Found with username: syedtesst\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "updateUsername",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldUsername\": \"syedtestUpdated\",\n    \"newUsername\": \"syedtest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/user/updateUsername",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"updateUsername"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateUsernameSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oldUsername\": \"syedtest\",\n    \"newUsername\": \"syedtestUpdated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/user/updateUsername",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"updateUsername"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:46:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Updated Successfully\",\n    \"data\": {\n        \"id\": \"a48bc540-335e-423b-b95b-72c356240ae3\",\n        \"createdAt\": \"2025-08-10T05:55:12.454056\",\n        \"lastUpdatedAt\": \"2025-08-10T06:11:37.514875\",\n        \"username\": \"syedtestUpdated\",\n        \"name\": \"syed SDE\",\n        \"email\": \"syed@hehe.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/v1/user/deleteUser?username=syedsadiquh",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"deleteUser"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "syedsadiquh"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteUserSuccess",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/deleteUser?username=syedsadiquh",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"deleteUser"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "syedsadiquh"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:47:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Deleted Successfully\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "deleteUserFailed",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/user/deleteUser?username=syedsadiquh",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"user",
+										"deleteUser"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "syedsadiquh"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:11:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Borrowings found for username : syedsadiquh\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Book Endpoints",
+			"item": [
+				{
+					"name": "createBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Merchant of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1980,\n    \"quantity\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/book/createBook",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"createBook"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createBookSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"November 9\",\n    \"author\": \"Cooleen Hover\",\n    \"isbn\": \"0987654321\",\n    \"pubYear\": 2014,\n    \"quantity\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/createBook",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"createBook"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:48:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"New Book Created\",\n    \"data\": {\n        \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n        \"createdAt\": \"2025-08-10T06:18:10.959093\",\n        \"lastUpdatedAt\": null,\n        \"title\": \"November 9\",\n        \"author\": \"Cooleen Hover\",\n        \"isbn\": \"0987654321\",\n        \"publicationYear\": 2014,\n        \"availableQuantity\": 10\n    }\n}"
+						},
+						{
+							"name": "createBookConflict",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"November 9\",\n    \"author\": \"Cooleen Hover\",\n    \"isbn\": \"0987654321\",\n    \"pubYear\": 2014,\n    \"quantity\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/createBook",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"createBook"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:48:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Book already exists\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "findBookByIsbn",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/book/findBookByIsbn?isbn=0987654321",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"findBookByIsbn"
+							],
+							"query": [
+								{
+									"key": "isbn",
+									"value": "0987654321"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "findBookByIsbnSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/findBookByIsbn?isbn=0987654321",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"findBookByIsbn"
+									],
+									"query": [
+										{
+											"key": "isbn",
+											"value": "0987654321"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:54:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Book found\",\n    \"data\": {\n        \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n        \"createdAt\": \"2025-08-10T06:18:10.959093\",\n        \"lastUpdatedAt\": null,\n        \"title\": \"November 9\",\n        \"author\": \"Cooleen Hover\",\n        \"isbn\": \"0987654321\",\n        \"publicationYear\": 2014,\n        \"availableQuantity\": 10\n    }\n}"
+						},
+						{
+							"name": "findBookByIsbnNotFound",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/findBookByIsbn?isbn=0987654320",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"findBookByIsbn"
+									],
+									"query": [
+										{
+											"key": "isbn",
+											"value": "0987654320"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:54:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Book not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllBooks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/book/getAllBooks?sortBy=author",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"getAllBooks"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "author"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllBooksAllParameters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/getAllBooks?sortBy=author&page=0&size=10&ascending=true",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"getAllBooks"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "author",
+											"description": "optional"
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"description": "optional"
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "optional"
+										},
+										{
+											"key": "ascending",
+											"value": "true",
+											"description": "optional"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:50:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Books found\",\n    \"data\": {\n        \"content\": [\n            {\n                \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n                \"createdAt\": \"2025-08-10T06:18:10.959093\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"November 9\",\n                \"author\": \"Cooleen Hover\",\n                \"isbn\": \"0987654321\",\n                \"publicationYear\": 2014,\n                \"availableQuantity\": 10\n            }\n        ],\n        \"page\": {\n            \"size\": 10,\n            \"number\": 0,\n            \"totalElements\": 1,\n            \"totalPages\": 1\n        }\n    }\n}"
+						},
+						{
+							"name": "getAllBooksNoParameters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/getAllBooks",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"getAllBooks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:51:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Books found\",\n    \"data\": {\n        \"content\": [\n            {\n                \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n                \"createdAt\": \"2025-08-10T06:18:10.959093\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"November 9\",\n                \"author\": \"Cooleen Hover\",\n                \"isbn\": \"0987654321\",\n                \"publicationYear\": 2014,\n                \"availableQuantity\": 10\n            }\n        ],\n        \"page\": {\n            \"size\": 10,\n            \"number\": 0,\n            \"totalElements\": 1,\n            \"totalPages\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "updateBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"1234567891\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/book/updateBook?id=626a8e27-f620-457a-baaf-c996de63d2ca",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"updateBook"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "626a8e27-f620-457a-baaf-c996de63d2ca"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateBookSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isbn\": \"1234567891\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/updateBook?id=626a8e27-f620-457a-baaf-c996de63d2ca",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"updateBook"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "626a8e27-f620-457a-baaf-c996de63d2ca"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:55:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Book updated\",\n    \"data\": {\n        \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n        \"createdAt\": \"2025-08-10T06:18:10.959093\",\n        \"lastUpdatedAt\": \"2025-08-10T06:25:32.016608\",\n        \"title\": \"November 9\",\n        \"author\": \"Cooleen Hover\",\n        \"isbn\": \"1234567891\",\n        \"publicationYear\": 2014,\n        \"availableQuantity\": 10\n    }\n}"
+						},
+						{
+							"name": "updateBookNotFound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isbn\": \"1234567891\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/updateBook?id=626a8e27-f620-457a-baaf-c996de63d2cb",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"updateBook"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "626a8e27-f620-457a-baaf-c996de63d2cb"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:55:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Book not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "searchBook",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\": \"c\",\n    \"title\": \"n\"\n    // \"isbn\": \"0987654321\"     optional\n    // \"pubYear\": 2014      optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/book/searchBook?sortBy=author&page=0&size=10&ascending=true",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"searchBook"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "author"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "ascending",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "searchBookSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\": \"c\",\n    \"title\": \"N\"\n    // \"isbn\": \"0987654321\"     optional\n    // \"pubYear\": 2014      optional\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/searchBook?sortBy=author&page=0&size=10&ascending=true",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"searchBook"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "author"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "ascending",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:59:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Books found\",\n    \"data\": {\n        \"content\": [\n            {\n                \"id\": \"626a8e27-f620-457a-baaf-c996de63d2ca\",\n                \"createdAt\": \"2025-08-10T06:18:10.959093\",\n                \"lastUpdatedAt\": \"2025-08-10T06:26:25.474957\",\n                \"title\": \"November 9\",\n                \"author\": \"Cooleen Hover\",\n                \"isbn\": \"0987654321\",\n                \"publicationYear\": 2014,\n                \"availableQuantity\": 10\n            }\n        ],\n        \"page\": {\n            \"size\": 10,\n            \"number\": 0,\n            \"totalElements\": 1,\n            \"totalPages\": 1\n        }\n    }\n}"
+						},
+						{
+							"name": "searchBookNotFound",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\": \"c\",\n    \"title\": \"h\"\n    // \"isbn\": \"0987654321\"     optional\n    // \"pubYear\": 2014      optional\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/searchBook?sortBy=author&page=0&size=10&ascending=true",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"searchBook"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "author"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "ascending",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 00:59:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"No Books found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "searchBookNotFound",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\": \"m\",\n    \"title\": \"n\"\n    // \"isbn\": \"0987654321\"     optional\n    // \"pubYear\": 2014      optional\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/book/searchBook?sortBy=author&page=0&size=10&ascending=true",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"searchBook"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "author"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "ascending",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:00:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"No Books found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteBook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/v1/book/deleteBook?id=d1ddcecf-d58b-4fd4-bbc9-459bccca3234",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"book",
+								"deleteBook"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "d1ddcecf-d58b-4fd4-bbc9-459bccca3234"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteBookSuccess",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/book/deleteBook?id=d1ddcecf-d58b-4fd4-bbc9-459bccca3234",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"deleteBook"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "d1ddcecf-d58b-4fd4-bbc9-459bccca3234"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:01:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Book deleted\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "deleteBookNotFound",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local8080}}/v1/book/deleteBook?id=d1ddcecf-d58b-4fd4-bbc9-459bccca3234",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"book",
+										"deleteBook"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "d1ddcecf-d58b-4fd4-bbc9-459bccca3234"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:01:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Book not found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Borrowings Endpoints",
+			"item": [
+				{
+					"name": "createBorrowing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\" : \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n    \"user_id\" : \"c7ffb217-a6f1-4e12-a874-d440233672c0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/borrowing/createBorrowing/",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"borrowing",
+								"createBorrowing",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createBorrowingBookNotFound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"d1ddcecf-d58b-4fd4-bbc9-459bccca3234\",\n    \"user_id\" : \"c7ffb217-a6f1-4e12-a874-d440233672c0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/createBorrowing/",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"createBorrowing",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:03:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Book not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "createBorrowingSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n    \"user_id\" : \"c7ffb217-a6f1-4e12-a874-d440233672c0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/createBorrowing/",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"createBorrowing",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:03:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Borrowing Created\",\n    \"data\": {\n        \"id\": \"aa7de1a6-a260-4933-8e0f-eec5bf1da7dc\",\n        \"userId\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n        \"userName\": \"syedsadiquh\",\n        \"bookId\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n        \"bookTitle\": \"Merchant of Venice\",\n        \"expectedReturnDate\": \"2025-08-24T06:33:32.557081\",\n        \"actualReturnDate\": null,\n        \"createdAt\": \"2025-08-10T06:33:32.557053\"\n    }\n}"
+						},
+						{
+							"name": "createBorrowingUserNotFound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n    \"user_id\" : \"c7ffb217-a6f1-4e12-a874-d440233672c1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/createBorrowing/",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"createBorrowing",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:03:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllBorrowings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/borrowing/getAllBorrowing",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"borrowing",
+								"getAllBorrowing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllBorrowingsSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/getAllBorrowing",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"getAllBorrowing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:04:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Borrowings fetched\",\n    \"data\": [\n        {\n            \"id\": \"aa7de1a6-a260-4933-8e0f-eec5bf1da7dc\",\n            \"createdAt\": \"2025-08-10T06:33:32.557053\",\n            \"lastUpdatedAt\": null,\n            \"user\": {\n                \"id\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n                \"createdAt\": \"2025-08-10T06:17:57.633396\",\n                \"lastUpdatedAt\": null,\n                \"username\": \"syedsadiquh\",\n                \"name\": \"Syed Sadiqu\",\n                \"email\": \"syed@gmail.com\"\n            },\n            \"book\": {\n                \"id\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n                \"createdAt\": \"2025-08-10T06:32:12.236904\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"Merchant of Venice\",\n                \"author\": \"William Shakespeare\",\n                \"isbn\": \"1234567890\",\n                \"publicationYear\": 1980,\n                \"availableQuantity\": 11\n            },\n            \"expectedReturnDate\": \"2025-08-24T06:33:32.557081\",\n            \"actualReturnDate\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "getAllBorrowingsMultiple",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/getAllBorrowing",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"getAllBorrowing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:05:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Borrowings fetched\",\n    \"data\": [\n        {\n            \"id\": \"aa7de1a6-a260-4933-8e0f-eec5bf1da7dc\",\n            \"createdAt\": \"2025-08-10T06:33:32.557053\",\n            \"lastUpdatedAt\": null,\n            \"user\": {\n                \"id\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n                \"createdAt\": \"2025-08-10T06:17:57.633396\",\n                \"lastUpdatedAt\": null,\n                \"username\": \"syedsadiquh\",\n                \"name\": \"Syed Sadiqu\",\n                \"email\": \"syed@gmail.com\"\n            },\n            \"book\": {\n                \"id\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n                \"createdAt\": \"2025-08-10T06:32:12.236904\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"Merchant of Venice\",\n                \"author\": \"William Shakespeare\",\n                \"isbn\": \"1234567890\",\n                \"publicationYear\": 1980,\n                \"availableQuantity\": 10\n            },\n            \"expectedReturnDate\": \"2025-08-24T06:33:32.557081\",\n            \"actualReturnDate\": null\n        },\n        {\n            \"id\": \"8bd658b9-385f-490f-bce2-5fe45084f10b\",\n            \"createdAt\": \"2025-08-10T06:35:02.681577\",\n            \"lastUpdatedAt\": null,\n            \"user\": {\n                \"id\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n                \"createdAt\": \"2025-08-10T06:17:57.633396\",\n                \"lastUpdatedAt\": null,\n                \"username\": \"syedsadiquh\",\n                \"name\": \"Syed Sadiqu\",\n                \"email\": \"syed@gmail.com\"\n            },\n            \"book\": {\n                \"id\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n                \"createdAt\": \"2025-08-10T06:32:12.236904\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"Merchant of Venice\",\n                \"author\": \"William Shakespeare\",\n                \"isbn\": \"1234567890\",\n                \"publicationYear\": 1980,\n                \"availableQuantity\": 10\n            },\n            \"expectedReturnDate\": \"2025-08-24T06:35:02.681593\",\n            \"actualReturnDate\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "returnBorrowing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/borrowing/returnBorrowing?borrowing_id=aa7de1a6-a260-4933-8e0f-eec5bf1da7dc",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"borrowing",
+								"returnBorrowing"
+							],
+							"query": [
+								{
+									"key": "borrowing_id",
+									"value": "aa7de1a6-a260-4933-8e0f-eec5bf1da7dc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "returnBorrowingSuccess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/returnBorrowing?borrowing_id=aa7de1a6-a260-4933-8e0f-eec5bf1da7dc",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"returnBorrowing"
+									],
+									"query": [
+										{
+											"key": "borrowing_id",
+											"value": "aa7de1a6-a260-4933-8e0f-eec5bf1da7dc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:08:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Borrowing updated successfully\",\n    \"data\": {\n        \"id\": \"aa7de1a6-a260-4933-8e0f-eec5bf1da7dc\",\n        \"createdAt\": \"2025-08-10T06:33:32.557053\",\n        \"lastUpdatedAt\": \"2025-08-10T06:38:19.671137\",\n        \"user\": {\n            \"id\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n            \"createdAt\": \"2025-08-10T06:17:57.633396\",\n            \"lastUpdatedAt\": null,\n            \"username\": \"syedsadiquh\",\n            \"name\": \"Syed Sadiqu\",\n            \"email\": \"syed@gmail.com\"\n        },\n        \"book\": {\n            \"id\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n            \"createdAt\": \"2025-08-10T06:32:12.236904\",\n            \"lastUpdatedAt\": null,\n            \"title\": \"Merchant of Venice\",\n            \"author\": \"William Shakespeare\",\n            \"isbn\": \"1234567890\",\n            \"publicationYear\": 1980,\n            \"availableQuantity\": 11\n        },\n        \"expectedReturnDate\": \"2025-08-24T06:33:32.557081\",\n        \"actualReturnDate\": \"2025-08-10T06:38:19.671137\"\n    }\n}"
+						},
+						{
+							"name": "returnBorrowingConflict",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"book_id\" : \"777fb466-6456-4a76-a70e-420ce284905e\",\n    \"user_id\" : \"51f5885e-bf6c-490b-8fb8-9bd0d75dd373\"\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/returnBorrowing?borrowing_id=aa7de1a6-a260-4933-8e0f-eec5bf1da7dc",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"returnBorrowing"
+									],
+									"query": [
+										{
+											"key": "borrowing_id",
+											"value": "aa7de1a6-a260-4933-8e0f-eec5bf1da7dc"
+										}
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:08:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Borrowing already returned\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "getActiveBorrowings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+						},
+						"url": {
+							"raw": "{{local8080}}/v1/borrowing/getActiveBorrowing?user_id=c7ffb217-a6f1-4e12-a874-d440233672c0",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"v1",
+								"borrowing",
+								"getActiveBorrowing"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "c7ffb217-a6f1-4e12-a874-d440233672c0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getActiveBorrowingsUserNotFound",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/getActiveBorrowing?user_id=b6e8af0b-b13a-49c1-9a74-916dfa8f355f",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"getActiveBorrowing"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "b6e8af0b-b13a-49c1-9a74-916dfa8f355f"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:08:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User with id b6e8af0b-b13a-49c1-9a74-916dfa8f355f not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "getActiveBorrowingsSuccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/getActiveBorrowing?user_id=c7ffb217-a6f1-4e12-a874-d440233672c0",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"getActiveBorrowing"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "c7ffb217-a6f1-4e12-a874-d440233672c0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:10:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Active borrowings for user with id c7ffb217-a6f1-4e12-a874-d440233672c0 fetched\",\n    \"data\": [\n        {\n            \"id\": \"8bd658b9-385f-490f-bce2-5fe45084f10b\",\n            \"createdAt\": \"2025-08-10T06:35:02.681577\",\n            \"lastUpdatedAt\": null,\n            \"user\": {\n                \"id\": \"c7ffb217-a6f1-4e12-a874-d440233672c0\",\n                \"createdAt\": \"2025-08-10T06:17:57.633396\",\n                \"lastUpdatedAt\": null,\n                \"username\": \"syedsadiquh\",\n                \"name\": \"Syed Sadiqu\",\n                \"email\": \"syed@gmail.com\"\n            },\n            \"book\": {\n                \"id\": \"69852055-1a44-4b9e-b4b0-d3e2aa6bdcdb\",\n                \"createdAt\": \"2025-08-10T06:32:12.236904\",\n                \"lastUpdatedAt\": null,\n                \"title\": \"Merchant of Venice\",\n                \"author\": \"William Shakespeare\",\n                \"isbn\": \"1234567890\",\n                \"publicationYear\": 1980,\n                \"availableQuantity\": 11\n            },\n            \"expectedReturnDate\": \"2025-08-24T06:35:02.681593\",\n            \"actualReturnDate\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "getActiveBorrowingsNoActive",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Merchant Of Venice\",\n    \"author\": \"William Shakespeare\",\n    \"isbn\": \"1234567890\",\n    \"pubYear\": 1970,\n    \"quantity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{local8080}}/v1/borrowing/getActiveBorrowing?user_id=a48bc540-335e-423b-b95b-72c356240ae3",
+									"host": [
+										"{{local8080}}"
+									],
+									"path": [
+										"v1",
+										"borrowing",
+										"getActiveBorrowing"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "a48bc540-335e-423b-b95b-72c356240ae3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 01:10:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User has no active borrowings\",\n    \"data\": []\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local8080",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}
