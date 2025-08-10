@@ -28,4 +28,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @Modifying
     @Transactional
     int deleteUserByUsername(String username);
+
+    boolean getUsersByEmail(String email);
+
+    Object findUsersByEmail(String email);
 }

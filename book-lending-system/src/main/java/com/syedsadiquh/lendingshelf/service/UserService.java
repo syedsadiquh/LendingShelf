@@ -102,8 +102,13 @@ public class UserService {
         try {
             oldUser = userRepository.findUsersByUsername(updateUserDto.getUsername());
             if (oldUser == null) {
-                log.warn("No user found with Username : {}", updateUserDto.getUsername());
+                log.warn("No User Found with Username : {}", updateUserDto.getUsername());
                 return new BaseResponse<>(false, "No User Found with username: " + updateUserDto.getUsername(), null);
+            }
+            var anyUser = userRepository.findUsersByEmail(updateUserDto.getEmail());
+            if(anyUser != null) {
+                log.warn("Email Already Exists");
+                return new BaseResponse<>(false, "Email Already Exists", null);
             }
 
             var newName = Objects.equals(updateUserDto.getName(), "") ? oldUser.getName() : updateUserDto.getName();

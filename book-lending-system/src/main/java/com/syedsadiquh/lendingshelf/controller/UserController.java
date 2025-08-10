@@ -73,8 +73,10 @@ public class UserController {
         if (res.isSuccess())
             return new ResponseEntity<>(res, HttpStatus.OK);
         else {
-            if (res.getMessage().equals("No user found"))
+            if (res.getMessage().contains("No User Found"))
                 return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+            if (res.getMessage().contains("Email Already Exists"))
+                return new ResponseEntity<>(res, HttpStatus.CONFLICT);
             return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
