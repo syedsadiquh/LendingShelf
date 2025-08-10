@@ -4,7 +4,6 @@ spring:
 
   datasource:
     url: ${SPRING_DB_URL}
-    # Temp user and password
     username: ${SPRING_DB_USERNAME}
     password: ${SPRING_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
