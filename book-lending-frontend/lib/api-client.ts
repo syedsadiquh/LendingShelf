@@ -94,14 +94,12 @@ export const BooksAPI = {
   updateBook: (id: string, body: UpdateBookBody) =>
     request<Book>(`/v1/book/updateBook${buildQuery({ id })}`, { method: "POST", body }),
 
-  // Note: Endpoint expects GET with JSON body. fetch supports body on GET, but some intermediaries may not.
-  // If this fails in your environment, consider asking backend to accept POST or query parameters for filters.
   searchBooks: (
     filters: SearchBookBody,
     params?: Partial<{ sortBy: string; page: number; size: number; ascending: boolean }>,
   ) =>
     request<Paged<Book>>(`/v1/book/searchBook${buildQuery(params ?? {})}`, {
-      method: "GET",
+      method: "POST",
       body: filters, // GET with body per backend spec
     }),
 

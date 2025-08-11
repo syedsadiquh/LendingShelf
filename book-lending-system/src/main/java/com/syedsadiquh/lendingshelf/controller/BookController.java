@@ -81,7 +81,7 @@ public class BookController {
         }
     }
 
-    @GetMapping({"/v1/book/searchBook", "/v1/book/searchBook/"})
+    @PostMapping({"/v1/book/searchBook", "/v1/book/searchBook/"})
     public ResponseEntity<BaseResponse<Page<Book>>> searchBook(
             @RequestBody SearchBookDto searchBookDto,
             @RequestParam(defaultValue = "0") int page,
